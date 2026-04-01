@@ -1,12 +1,12 @@
 # --- Connection Stage ---
 access
-dnsbl
+dns-list
 helo.checks
 
 # --- Security & Auth ---
 tls
 spf
-dkim_verify
+dkim
 auth/flat_file
 
 # --- Your Custom Automation ---

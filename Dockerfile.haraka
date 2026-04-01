@@ -7,6 +7,8 @@ RUN npm install -g Haraka
 WORKDIR /app
 RUN haraka -i .
 
+RUN npm install haraka-plugin-wildduck
+
 # Copy your custom configurations and plugins from your repo
 COPY ./haraka_config/config ./config
 COPY ./haraka_config/plugins ./plugins
