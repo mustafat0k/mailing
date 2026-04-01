@@ -1,0 +1,21 @@
+# --- Connection Stage ---
+access
+dnsbl
+helo.checks
+
+# --- Security & Auth ---
+tls
+spf
+dkim_verify
+auth/flat_file
+
+# --- Your Custom Automation ---
+# This matches the file in your plugins/ folder
+verification
+
+# --- Storage & Delivery ---
+# The bridge to MongoDB
+wildduck
+
+# The bulk sending engine
+outbound

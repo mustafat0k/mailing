@@ -1,0 +1,9 @@
+{
+    "name": "haraka-config",
+    "version": "1.0.0",
+    "description": "Custom plugins and config for Haraka",
+    "dependencies": {
+      "haraka-plugin-wildduck": "latest",
+      "haraka-plugin-tls": "latest"
+    }
+  }
