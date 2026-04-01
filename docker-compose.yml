@@ -7,7 +7,8 @@ services:
     restart: always
     volumes:
       - mongo_data:/data/db
-
+    environment:
+      - MONGO_INITDB_DATABASE=wildduck
   # Cache for session management
   redis:
     image: redis:7.2-alpine
@@ -20,6 +21,8 @@ services:
     environment:
       - MONGODB_URL=mongodb://mongodb:27017/wildduck
       - REDIS_URL=redis://redis:6379
+      - API_HOST=0.0.0.0
+      - API_PORT=8080
     ports:
       - "8080:8080" # You will use this port to test with Postman/Curl
     depends_on:
@@ -32,9 +35,13 @@ services:
       context: .
       dockerfile: Dockerfile.haraka
     restart: always
+    environment:
+      # Tells Haraka to look for the "wildduck" service on the network
+      - WILDDUCK_HOST=wildduck
+      - WILDDUCK_PORT=8080
     ports:
-      - "25:25"   
-      - "587:587" 
+      - "25:25"   # Inbound
+      - "587:587" # Outbound / Submission
     depends_on:
       - wildduck
 
