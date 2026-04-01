@@ -1,4 +1,4 @@
 [core]
 ; Use the name of the service defined in your docker
-host=wildduck 
+host=mailing 
 port=8080
