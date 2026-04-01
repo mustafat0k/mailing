@@ -1,0 +1,17 @@
+FROM node:20-slim
+
+# Install Haraka globally
+RUN npm install -g Haraka
+
+# Create the Haraka instance
+WORKDIR /app
+RUN haraka -i .
+
+# Copy your custom configurations and plugins from your repo
+COPY ./haraka_config/config ./config
+COPY ./haraka_config/plugins ./plugins
+
+# Expose SMTP ports
+EXPOSE 25 587
+
+CMD ["haraka", "-c", "."]

@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Database for storing emails and user data
+  mongodb:
+    image: mongo:7.0
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+
+  # Cache for session management
+  redis:
+    image: redis:7.2-alpine
+    restart: always
+
+  # The Mail Store & API (The "Brain")
+  wildduck:
+    image: wildduck/wildduck:latest
+    restart: always
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017/wildduck
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - "8080:8080" # You will use this port to test with Postman/Curl
+    depends_on:
+      - mongodb
+      - redis
+
+  # The SMTP Engine (The "Mover")
+  haraka:
+    build:
+      context: .
+      dockerfile: Dockerfile.haraka
+    restart: always
+    ports:
+      - "25:25"   
+      - "587:587" 
+    depends_on:
+      - wildduck
+
+volumes:
+  mongo_data:
