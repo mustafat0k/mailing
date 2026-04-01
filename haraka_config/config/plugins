@@ -18,4 +18,4 @@ verification
 wildduck
 
 # The bulk sending engine
-queue/outbound
+outbound
