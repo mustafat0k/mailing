@@ -1,6 +1,6 @@
 # --- Connection Stage ---
 access
-dns-list
+# dns-list
 helo.checks
 
 # --- Security & Auth ---
